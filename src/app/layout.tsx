@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/styles/globals.css";
 import { ApolloWrapper } from "@/lib/apollo-wrapper";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Stonebay",
-  description: "Your online marketplace",
+  title: {
+    default: "Stonebay — Nigeria's #1 Marketplace",
+    template: "%s | Stonebay",
+  },
+  description:
+    "Shop from thousands of verified sellers across fashion, electronics, home goods, beauty, and more.",
 };
 
 export default function RootLayout({
@@ -14,8 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-white text-gray-900">
-        <ApolloWrapper>{children}</ApolloWrapper>
+      <body>
+        <ApolloWrapper>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </ApolloWrapper>
       </body>
     </html>
   );

@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Brand colors */
+  --teal: #2b6777;
+  --teal-dark: #1d4d5a;
+  --teal-light: #3a8a9e;
+  --blue-grey: #cbd8e4;
+  --sage: #52ab98;
+  --sage-light: #7ec8b8;
+  --white: #ffffff;
+  --off-white: #f2f2f2;
+
+  /* Text */
+  --text-dark: #1a2e35;
+  --text-mid: #4a6572;
+  --text-light: #8aa5b0;
+
+  /* UI */
+  --border: rgba(43, 103, 119, 0.15);
+  --shadow-sm: 0 4px 16px rgba(43, 103, 119, 0.08);
+  --shadow-md: 0 12px 40px rgba(43, 103, 119, 0.12);
+  --shadow-lg: 0 24px 64px rgba(43, 103, 119, 0.18);
+
+  /* Fonts */
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Outfit', sans-serif;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Animations ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(-2deg); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Utility classes ── */
+.animate-float { animation: float 5s ease-in-out infinite; }
+.animate-float-slow { animation: floatSlow 6s ease-in-out infinite 0.8s; }
+.animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
