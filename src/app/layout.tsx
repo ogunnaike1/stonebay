@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import "@/styles/globals.css";
+import "../styles/global.css"
 import { ApolloWrapper } from "@/lib/apollo-wrapper";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: {
@@ -22,9 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ApolloWrapper>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          {children}
         </ApolloWrapper>
       </body>
     </html>
