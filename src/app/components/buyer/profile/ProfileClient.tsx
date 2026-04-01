@@ -5,7 +5,7 @@ import DashboardTopbar from "../../shared/DashboardTopbar";
 import { Camera, Check } from "lucide-react";
 
 export default function ProfileClient() {
-  const [form, setForm] = useState({ firstName: "Adeola", lastName: "Kamara", email: "adeola@email.com", phone: "+234 801 234 5678", city: "Lagos", state: "Lagos State" });
+  const [form, setForm] = useState({ firstName: "Usman", lastName: "Kamara", email: "usman@email.com", phone: "+234 801 234 5678", city: "Lagos", state: "Lagos State" });
   const [saved, setSaved] = useState(false);
   const [tab, setTab] = useState<"profile" | "password" | "notifications">("profile");
 

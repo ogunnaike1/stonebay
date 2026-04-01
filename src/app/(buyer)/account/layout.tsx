@@ -12,7 +12,7 @@ import {
 
 const navSections = [
   {
-    title: "Main",
+    title: "Dashboard",
     items: [
       { label: "Overview", href: "/account", icon: <LayoutDashboard size={16} /> },
       { label: "My Orders", href: "/account/orders", icon: <ShoppingBag size={16} />, badge: 3 },
@@ -36,9 +36,9 @@ export default function BuyerLayout({ children }: { children: React.ReactNode })
     <div style={{ display: "flex", minHeight: "100vh", background: "var(--off-white)" }}>
       <DashboardSidebar
         navSections={navSections}
-        userName="Adeola Kamara"
+        userName="Usman Ogunnaike"
         userSub="Buyer account"
-        avatarInitials="AK"
+        avatarInitials="UO"
       />
       <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
         {children}

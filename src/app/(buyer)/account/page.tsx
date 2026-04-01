@@ -13,7 +13,7 @@ export default function BuyerDashboardPage() {
         <div style={{ background: "linear-gradient(120deg, #1d4d5a, #2b6777)", borderRadius: "var(--radius-lg)", padding: "20px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
           <div>
             <div style={{ fontSize: 13, color: "rgba(203,216,228,0.7)", marginBottom: 4 }}>Good morning,</div>
-            <div style={{ fontSize: 20, fontWeight: 500, color: "white" }}>Adeola 👋</div>
+            <div style={{ fontSize: 20, fontWeight: 500, color: "white" }}>Usman 👋</div>
           </div>
           <Link href="/products">
             <button style={{ background: "var(--sage)", color: "white", border: "none", padding: "10px 20px", borderRadius: "var(--radius-sm)", fontSize: 13, fontWeight: 500, cursor: "pointer" }}>Shop Now</button>

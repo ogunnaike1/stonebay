@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 const orders = [
-  { id: "SB-4821", buyer: "Adeola K.", items: 2, amount: "₦36,500", status: "New order" },
+  { id: "SB-4821", buyer: "Usman o.", items: 2, amount: "₦36,500", status: "New order" },
   { id: "SB-4819", buyer: "Chidi O.", items: 1, amount: "₦18,500", status: "Packed" },
   { id: "SB-4814", buyer: "Ngozi A.", items: 3, amount: "₦72,000", status: "Shipped" },
   { id: "SB-4809", buyer: "Emeka B.", items: 1, amount: "₦24,500", status: "Delivered" },
