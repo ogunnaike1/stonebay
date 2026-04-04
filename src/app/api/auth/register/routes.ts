@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     // 2. Validate with Zod schema
     const parsed = RegisterSchema.safeParse(body);
     if (!parsed.success) {
-      const firstError = parsed.error.errors[0];
+      const firstError = parsed.error.issues[0];
       return NextResponse.json(
         { error: firstError.message },
         { status: 400 }

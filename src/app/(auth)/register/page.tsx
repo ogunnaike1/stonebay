@@ -29,7 +29,7 @@ export default function RegisterPage() {
     const result = RegisterSchema.safeParse({ ...form, role });
     if (result.success) { setErrors({}); return true; }
     const newErrors: FieldErrors = {};
-    result.error.errors.forEach((err) => {
+    result.error.issues.forEach((err) => {
       const field = err.path[0] as keyof FieldErrors;
       if (!newErrors[field]) newErrors[field] = err.message;
     });
