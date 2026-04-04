@@ -1,15 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
-import { Role } from "@prisma/client";
 import { RegisterSchema } from "@/lib/validations/auth";
 
 export async function POST(req: NextRequest) {
   try {
-    // 1. Parse request body
     const body = await req.json();
 
-    // 2. Validate with Zod schema
     const parsed = RegisterSchema.safeParse(body);
     if (!parsed.success) {
       const firstError = parsed.error.issues[0];
@@ -22,11 +19,7 @@ export async function POST(req: NextRequest) {
     const { firstName, lastName, email, password, role, storeName, phone } =
       parsed.data;
 
-    // 3. Check if email is already registered
-    const existingUser = await prisma.user.findUnique({
-      where: { email },
-    });
-
+    const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
       return NextResponse.json(
         { error: "An account with this email already exists. Please sign in instead." },
@@ -34,29 +27,21 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 4. Hash the password (cost factor 12 = secure but not too slow)
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // 5. Create user + store atomically in a transaction
-    const user = await prisma.$transaction(async (tx) => {
+    const user = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const newUser = await tx.user.create({
         data: {
           name: `${firstName} ${lastName}`,
           email,
           password: hashedPassword,
           phone: phone ?? null,
-          role: role as Role,
+          role: role,          // Zod already validated this is "BUYER" | "SELLER"
           emailVerified: new Date(),
         },
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          role: true,
-        },
+        select: { id: true, name: true, email: true, role: true },
       });
 
-      // Create store if registering as seller
       if (role === "SELLER" && storeName) {
         const baseSlug = storeName
           .toLowerCase()
@@ -64,13 +49,11 @@ export async function POST(req: NextRequest) {
           .replace(/[^a-z0-9]+/g, "-")
           .replace(/^-+|-+$/g, "");
 
-        const slug = `${baseSlug}-${newUser.id.slice(0, 6)}`;
-
         await tx.store.create({
           data: {
             userId: newUser.id,
             name: storeName,
-            slug,
+            slug: `${baseSlug}-${newUser.id.slice(0, 6)}`,
             isActive: true,
             isVerified: false,
           },
