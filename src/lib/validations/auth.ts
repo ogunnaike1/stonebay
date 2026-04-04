@@ -23,9 +23,7 @@ export const RegisterSchema = z.object({
     .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
     .regex(/[0-9]/, "Password must contain at least one number"),
 
-  role: z.enum(["BUYER", "SELLER"], {
-    errorMap: () => ({ message: "Please select a valid role" }),
-  }),
+    role: z.enum(["BUYER", "SELLER"]),
 
   // Seller-only fields (optional for buyers)
   storeName: z
